@@ -1,0 +1,259 @@
+<div class="container text-center">
+  <h1>{{ title }}</h1>
+  <select class="form-select" aria-label="Default select example">
+    <option selected>اليوم</option>
+    <option *ngFor="let day of Days" [value]="day">{{ day }}</option>
+  </select>
+</div>
+<div class="container">
+  <button
+    type="button"
+    class="btn btn-primary"
+    data-bs-toggle="modal"
+    data-bs-target="#exampleModal"
+    (click)="open(content)"
+  >
+    اضافة شخص
+  </button>
+
+  <div class="row">
+    <div class="search-hero">
+      <input
+        class="form-control"
+        type="text"
+        name="search"
+        [(ngModel)]="searchText"
+        autocomplete="off"
+        placeholder="&#61442;  البحث"
+      />
+    </div>
+    <div class="table-wrapper-scroll-y my-custom-scrollbar">
+   
+      <table class="table table-bordered table-striped mb-0">
+        <thead>
+          <tr class="title">
+            <th>فعل</th>
+            <th>الجاري</th>
+            <th>التلقيح</th>
+            <th>هاتف الاب</th>
+            <th>طفل</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let child of childs | filter: searchText">
+            <td>
+              <button
+                type="button"
+                class="btn btn-light"
+                (click)="openVerticallyCentered(longcontent)"
+              >
+                <img class="images" src="../../assets/danger.png" />
+              </button>
+            </td>
+            <td>
+              <button
+                type="button"
+                class="btn btn-light"
+                (click)="openEncours(shortcontent)"
+              >
+                <img class="images" src="../../assets/chargement.png" />
+              </button>
+            </td>
+            <td>{{ child.full_name}}</td>
+            <td>{{ child.id_parent }}</td>
+            <td>{{ child.gender }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<!-- first modal to add new patient -->
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">اضافة شخص</h4>
+    <button
+      type="button"
+      class="btn-close"
+      aria-label="Close"
+      (click)="modal.dismiss('Cross click')"
+    ></button>
+  </div>
+  <div class="modal-body">
+    <form>
+      <div class="mb-3">
+        <div class="input-group input-group-sm mb-3">
+          <input
+            type="text"
+            class="form-control"
+            aria-label="Sizing example input"
+            aria-describedby="inputGroup-sizing-sm"
+          />
+          <span class="input-group-text" id="inputGroup-sizing-sm">طفل</span>
+        </div>
+        <div class="input-group input-group-sm mb-3">
+          <input
+            type="text"
+            class="form-control"
+            aria-label="Sizing example input"
+            aria-describedby="inputGroup-sizing-sm"
+          />
+          <span class="input-group-text" id="inputGroup-sizing-sm">
+            هاتف الاب</span
+          >
+        </div>
+        <select class="form-select" aria-label="Default select example">
+          <option selected>التلقيح</option>
+          <option value="1">ملقح</option>
+          <option value="2">غير ملقح</option>
+        </select>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button
+      type="button"
+      class="btn btn-outline-dark"
+      (click)="modal.close('Save click')"
+    >
+      Save
+    </button>
+  </div>
+</ng-template>
+<!-- Second modal to add report -->
+
+<ng-template #longcontent let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic"></h4>
+    <button
+      type="button"
+      class="btn-close"
+      aria-label="Close"
+      (click)="modal.dismiss('Cross click')"
+    ></button>
+  </div>
+  <div class="modal-body">
+    <form>
+      <div class="mb-3">
+        <div class="input-group input-group-sm mb-3">
+          <input
+            type="text"
+            class="form-control"
+            aria-label="Sizing example input"
+            aria-describedby="inputGroup-sizing-sm"
+          />
+          <span class="input-group-text" id="inputGroup-sizing-sm">حرارة</span>
+        </div>
+        <div class="input-group input-group-sm mb-3">
+          <input
+            type="text"
+            class="form-control"
+            aria-label="Sizing example input"
+            aria-describedby="inputGroup-sizing-sm"
+          />
+          <span class="input-group-text" id="inputGroup-sizing-sm"> الوزن</span>
+        </div>
+        <div class="input-group input-group-sm mb-3">
+          <input
+            type="text"
+            class="form-control"
+            aria-label="Sizing example input"
+            aria-describedby="inputGroup-sizing-sm"
+          />
+          <span class="input-group-text" id="inputGroup-sizing-sm"> الطول</span>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button
+      type="button"
+      class="btn btn-outline-dark"
+      (click)="modal.close('Save click')"
+    >
+      تم
+    </button>
+  </div>
+</ng-template>
+!-- third modal to add (Encours) -->
+<ng-template #shortcontent let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic"></h4>
+    <button
+      type="button"
+      class="btn-close"
+      aria-label="Close"
+      (click)="modal.dismiss('Cross click')"
+    ></button>
+  </div>
+  <div class="modal-body">
+    <form>
+      <div class="mb-3">
+        <div class="input-group input-group-sm mb-3">
+          <input
+            type="text"
+            class="form-control"
+            aria-label="Sizing example input"
+            aria-describedby="inputGroup-sizing-sm"
+          />
+          <span class="input-group-text" id="inputGroup-sizing-sm">حرارة</span>
+        </div>
+        <div class="input-group input-group-sm mb-3">
+          <input
+            type="text"
+            class="form-control"
+            aria-label="Sizing example input"
+            aria-describedby="inputGroup-sizing-sm"
+          />
+          <span class="input-group-text" id="inputGroup-sizing-sm"> الوزن</span>
+        </div>
+        <div class="input-group input-group-sm mb-3">
+          <input
+            type="text"
+            class="form-control"
+            aria-label="Sizing example input"
+            aria-describedby="inputGroup-sizing-sm"
+          />
+          <span class="input-group-text" id="inputGroup-sizing-sm"> الطول</span>
+        </div>
+        <div class="input-group input-group-sm mb-3">
+            <input
+              type="date"
+              class="form-control"
+              aria-label="Sizing example input"
+              aria-describedby="inputGroup-sizing-sm"
+            />
+            <span class="input-group-text" id="inputGroup-sizing-sm" > التاريخ</span>
+          </div>
+        <form class="row row-cols-sm-auto">
+          <div class="col-12">
+            <!-- <div class="input-group">
+              <input
+                class="form-control"
+                placeholder="yyyy-mm-dd"
+                name="dp"
+                [(ngModel)]="model"
+                ngbDatepicker
+                #d="ngbDatepicker"
+              />
+              <button
+                class="btn btn-outline-secondary calendar"
+                (click)="d.toggle()"
+                type="button"
+              ></button>
+            </div> -->
+          </div>
+        </form>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button
+      type="button"
+      class="btn btn-outline-dark"
+      (click)="modal.close('Save click')"
+    >
+      تم
+    </button>
+  </div>
+</ng-template>

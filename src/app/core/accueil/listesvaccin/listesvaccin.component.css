@@ -1,0 +1,50 @@
+.table-striped {
+    overflow: scroll;
+    max-height: 450px;
+  }
+  .container {
+    padding-top: 50px;
+    padding-bottom: 10px;
+    color: #405065;
+  }
+  .form-select {
+    width: 100px;
+   
+    margin-top: 1rem;
+  }
+  .b {
+    width: 50px;
+  }
+   
+  .search-hero {
+    max-width: 500px;
+    padding-bottom: 50px;
+    margin: auto;
+  }
+  .my-custom-scrollbar {
+    position: relative;
+    height: 900px;
+    overflow: auto;
+  }
+  /* .title{
+     align-items: center;
+     position: relative;
+   
+  } */
+  .table-wrapper-scroll-y {
+    display: block;
+  }
+  .images {
+    width: 50px;
+  }
+   
+  .form-control {
+    box-shadow: 0 10px 40px 0 #b0c1d9;
+  }
+  .form-control::placeholder {
+    font-family: FontAwesome;
+  }
+  .input-group input-group-sm mb-3{
+      width: 100px;
+      height: 100px;
+  }
